@@ -1,0 +1,52 @@
+.wrap {
+  position: relative;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.domLayer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+}
+
+.cellButton {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.cellButton:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.edgeSum rect {
+  fill: var(--edge-label-sum-bg);
+}
+
+.edgeSum text {
+  fill: var(--edge-label-sum-fg);
+  font-weight: 600;
+}
+
+.edgeDiff rect {
+  fill: var(--edge-label-diff-bg);
+}
+
+.edgeDiff text {
+  fill: var(--edge-label-diff-fg);
+  font-weight: 600;
+}

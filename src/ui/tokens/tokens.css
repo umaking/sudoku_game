@@ -1,0 +1,101 @@
+:root {
+  /* light theme */
+  --bg: #fafaf7;
+  --fg: #1f1d1a;
+  --cell-default: #ffffff;
+  --cell-selected: #ffe9a8;
+  --cell-peer: #f6f0da;
+  --cell-same-digit: #efe7ce;
+  --grid-cell-line: #d8d5ce;
+  --grid-box-line: #1f1d1a;
+  --num-given: #1f1d1a;
+  --num-user: #1a6fe0;
+  --num-error: #d43f3a;
+  --num-pencil: #6b6b6b;
+  --pad-bg: #ffffff;
+  --pad-border: #d8d5ce;
+  --pad-active: #ffe9a8;
+  --focus: #1a6fe0;
+  --cell-parity-even: #dcecfb;
+  --cell-parity-odd: #fbe8d9;
+  --edge-label-sum-bg: #2d5f8a;
+  --edge-label-sum-fg: #ffffff;
+  --edge-label-diff-bg: #8a4a2d;
+  --edge-label-diff-fg: #ffffff;
+  --edge-label-violation: #d43f3a;
+  --modal-backdrop: rgba(0, 0, 0, 0.5);
+  --modal-surface: #ffffff;
+  --modal-border: #d8d5ce;
+  --cell-region-complete: #ffe066;
+  --font-scale: 1;
+}
+
+:root[data-theme='dark'] {
+  --bg: #15171a;
+  --fg: #ededde;
+  --cell-default: transparent;
+  --cell-selected: #3a3416;
+  --cell-peer: #25241b;
+  --cell-same-digit: #2d2a18;
+  --grid-cell-line: #2c3036;
+  --grid-box-line: #e8e8e6;
+  --num-given: #ededde;
+  --num-user: #7db6ff;
+  --num-error: #ff7b75;
+  --num-pencil: #888;
+  --pad-bg: #1c1f23;
+  --pad-border: #2c3036;
+  --pad-active: #3a3416;
+  --cell-parity-even: #1e2a3a;
+  --cell-parity-odd: #3a2a1e;
+  --edge-label-sum-bg: #6ba0d4;
+  --edge-label-sum-fg: #15171a;
+  --edge-label-diff-bg: #d49b6b;
+  --edge-label-diff-fg: #15171a;
+  --edge-label-violation: #ff7b75;
+  --modal-backdrop: rgba(0, 0, 0, 0.65);
+  --modal-surface: #1c1f23;
+  --modal-border: #2c3036;
+  --cell-region-complete: #6a4f1a;
+}
+
+/* -------------------------------------------------------------------- *
+ * Colorblind mode: data-cb='1' is set on <html> (by SettingsModal).
+ * For deuteranopia/protanopia users, the default subtle pastel parity
+ * tints can be hard to distinguish from each other or from peer-cell
+ * tints. We boost contrast and shift hues toward a blue/orange axis
+ * (rather than red/green), which is reliably distinguishable across
+ * the most common forms of color blindness.
+ *
+ * We also strengthen error/conflict colors and pencil-mark colors so
+ * users relying primarily on luminance contrast can read them clearly.
+ * Patterns (SVG hatch fills) would require restructuring the SVG defs;
+ * the high-contrast palette below is the simpler, equally-effective
+ * approach and stays within Dev D's scope.
+ * -------------------------------------------------------------------- */
+:root[data-cb='1'] {
+  --cell-parity-even: #b9d4f5;
+  --cell-parity-odd: #f5d4a8;
+  --num-error: #c41a1a;
+  --num-pencil: #4a4a4a;
+  --edge-label-sum-bg: #1f4f7a;
+  --edge-label-diff-bg: #7a3a1f;
+  --edge-label-violation: #c41a1a;
+  --cell-region-complete: #ffd24a;
+}
+
+:root[data-cb='1'][data-theme='dark'] {
+  --cell-parity-even: #345a85;
+  --cell-parity-odd: #855730;
+  --num-error: #ff8a85;
+  --num-pencil: #a8a8a8;
+  --edge-label-sum-bg: #7eb6e6;
+  --edge-label-diff-bg: #e6a17e;
+  --edge-label-violation: #ff8a85;
+  --cell-region-complete: #5a4111;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+}

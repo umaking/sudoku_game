@@ -1,0 +1,156 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-backdrop);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.surface {
+  background: var(--modal-surface);
+  color: var(--fg);
+  border: 1px solid var(--modal-border);
+  border-radius: 10px;
+  width: 100%;
+  max-width: 540px;
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.surface:focus {
+  outline: none;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--modal-border);
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: calc(18px * var(--font-scale));
+  font-weight: 600;
+}
+
+.closeButton {
+  background: transparent;
+  border: 0;
+  color: var(--fg);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.closeButton:hover {
+  background: var(--cell-peer);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.closeButtonFloating {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: 0;
+  color: var(--fg);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.closeButtonFloating:hover {
+  background: var(--cell-peer);
+}
+
+.closeButtonFloating:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.body {
+  padding: 16px;
+  overflow-y: auto;
+  font-size: calc(14px * var(--font-scale));
+  line-height: 1.55;
+}
+
+/* -------------------------------------------------------------------- *
+ * Mobile: convert centered modal into a bottom-sheet that slides up
+ * from the bottom of the viewport. Larger touch targets on the close
+ * button. The backdrop becomes a flex column with bottom alignment.
+ * -------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .backdrop {
+    padding: 0;
+    align-items: flex-end;
+    justify-content: stretch;
+  }
+
+  .surface {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    max-height: 85vh;
+    animation: modal-slide-up 0.25s ease-out;
+  }
+
+  .header {
+    padding: 16px;
+  }
+
+  .closeButton,
+  .closeButtonFloating {
+    /* larger touch target on mobile */
+    font-size: 26px;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .body {
+    padding: 14px 16px 24px;
+  }
+}
+
+@keyframes modal-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .surface {
+    animation: none;
+  }
+}

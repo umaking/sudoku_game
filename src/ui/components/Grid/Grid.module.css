@@ -1,0 +1,140 @@
+.gridWrap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;
+  user-select: none;
+  /* Disable touch gesture defaults (scroll/zoom) so long-press fires
+     reliably and the long-press doesn't trigger system context menu. */
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+}
+
+@media (max-width: 600px) {
+  .gridWrap {
+    max-width: 100%;
+    /* Slightly tighter cell-text sizing on small screens */
+    --font-scale: calc(var(--font-scale, 1) * 0.95);
+  }
+}
+
+@media (max-width: 400px) {
+  .gridWrap {
+    --font-scale: calc(var(--font-scale, 1) * 0.85);
+  }
+}
+
+.svgLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: block;
+}
+
+.domLayer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+}
+
+.cellButton {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  /* Disable browser long-press context menus so our custom long-press
+     gesture isn't pre-empted on touch devices. */
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.cellButton:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.parityEven {
+  fill: var(--cell-parity-even);
+}
+
+.parityOdd {
+  fill: var(--cell-parity-odd);
+}
+
+.edgeLabels {
+  pointer-events: none;
+}
+
+.edgeSum rect {
+  fill: var(--edge-label-sum-bg);
+  stroke: transparent;
+  stroke-width: 0;
+}
+
+.edgeSum text {
+  fill: var(--edge-label-sum-fg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.edgeDiff rect {
+  fill: var(--edge-label-diff-bg);
+  stroke: transparent;
+  stroke-width: 0;
+}
+
+.edgeDiff text {
+  fill: var(--edge-label-diff-fg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.edgeViolated rect {
+  stroke: var(--edge-label-violation);
+  stroke-width: 2;
+}
+
+/* -------------------------------------------------------------------- *
+ * Region-completion flash.
+ *
+ * Triggered when a row/col/box is freshly filled with a 1..9 permutation.
+ * The keyframe ramps the rect's fill from transparent → highlight → out
+ * over 0.8s, briefly tinting the cells without obscuring the digits
+ * (text/grid-lines are drawn in later <g> layers and stay on top).
+ * -------------------------------------------------------------------- */
+@keyframes regionFlash {
+  0% {
+    fill: transparent;
+    opacity: 0;
+  }
+  20% {
+    fill: var(--cell-region-complete);
+    opacity: 0.85;
+  }
+  100% {
+    fill: var(--cell-region-complete);
+    opacity: 0;
+  }
+}
+
+.regionCompleting {
+  fill: var(--cell-region-complete);
+  animation: regionFlash 0.8s ease-out;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .regionCompleting {
+    animation: none;
+    opacity: 0;
+  }
+}

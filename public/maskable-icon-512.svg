@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" fill="#15171a"/>
+  <g transform="translate(102, 102)" stroke="#e8e8e6" stroke-width="4" fill="none">
+    <rect x="0" y="0" width="308" height="308" rx="16"/>
+    <line x1="102" y1="0" x2="102" y2="308"/>
+    <line x1="206" y1="0" x2="206" y2="308"/>
+    <line x1="0" y1="102" x2="308" y2="102"/>
+    <line x1="0" y1="206" x2="308" y2="206"/>
+  </g>
+  <text x="256" y="300" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="160" font-weight="700" fill="#7db6ff">S</text>
+</svg>

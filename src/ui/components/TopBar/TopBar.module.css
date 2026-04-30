@@ -1,0 +1,70 @@
+.bar {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: calc(16px * var(--font-scale));
+  color: var(--fg);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.difficulty {
+  font-size: calc(14px * var(--font-scale));
+  color: var(--fg);
+  opacity: 0.75;
+  white-space: nowrap;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-size: calc(16px * var(--font-scale));
+}
+
+.mistakes {
+  color: var(--num-error);
+  font-size: calc(14px * var(--font-scale));
+}
+
+.iconButton {
+  background: var(--pad-bg);
+  border: 1px solid var(--pad-border);
+  color: var(--fg);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  min-width: 36px;
+  min-height: 32px;
+}
+
+.iconButton:hover {
+  background: var(--pad-active);
+}
+
+.iconButton:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}

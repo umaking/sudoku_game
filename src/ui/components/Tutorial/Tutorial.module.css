@@ -1,0 +1,123 @@
+.progress {
+  font-size: calc(12px * var(--font-scale));
+  opacity: 0.7;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.stepTitle {
+  margin: 0 0 8px 0;
+  font-size: calc(16px * var(--font-scale));
+  font-weight: 700;
+}
+
+.body {
+  margin: 0 0 12px 0;
+  line-height: 1.55;
+}
+
+.boardWrap {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.challenge {
+  margin-top: 12px;
+}
+
+.digitPad {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 4px;
+  margin-top: 6px;
+}
+
+@media (max-width: 480px) {
+  .digitPad {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.digitBtn {
+  background: var(--pad-bg);
+  border: 1px solid var(--pad-border);
+  color: var(--fg);
+  padding: 8px 4px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+.digitBtn:hover {
+  background: var(--pad-active);
+}
+
+.digitBtn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.feedback {
+  margin: 10px 0 0 0;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: calc(13px * var(--font-scale));
+}
+
+.feedbackOk {
+  background: var(--cell-parity-even);
+  color: var(--fg);
+  border-left: 3px solid var(--num-user);
+}
+
+.feedbackBad {
+  background: var(--cell-parity-odd);
+  color: var(--fg);
+  border-left: 3px solid var(--num-error);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn {
+  background: var(--pad-bg);
+  border: 1px solid var(--pad-border);
+  color: var(--fg);
+  padding: 10px 16px;
+  font-size: calc(14px * var(--font-scale));
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.btn:hover {
+  background: var(--pad-active);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.primary {
+  background: var(--num-user);
+  color: var(--bg);
+  border-color: var(--num-user);
+}
+
+.primary:hover {
+  filter: brightness(1.1);
+}

@@ -1,0 +1,81 @@
+.pad {
+  width: 100%;
+  max-width: 720px;
+  margin: 16px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.digits {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 520px) {
+  .digits {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .pad {
+    gap: 6px;
+  }
+
+  .digits {
+    gap: 4px;
+  }
+
+  .actions {
+    gap: 4px;
+  }
+
+  .btn {
+    padding: 10px 4px;
+    font-size: calc(18px * var(--font-scale));
+  }
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.btn {
+  background: var(--pad-bg);
+  border: 1px solid var(--pad-border);
+  color: var(--fg);
+  padding: 12px 8px;
+  font-size: calc(20px * var(--font-scale));
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 80ms ease;
+  min-height: 44px;
+}
+
+.btn:hover {
+  background: var(--pad-active);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.btnActive {
+  background: var(--pad-active);
+}
+
+.btnExhausted {
+  color: var(--num-pencil);
+  opacity: 0.5;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}

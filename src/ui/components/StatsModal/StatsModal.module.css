@@ -1,0 +1,99 @@
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--modal-border);
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: calc(13px * var(--font-scale));
+}
+
+.table thead th {
+  text-align: left;
+  padding: 8px 10px;
+  background: var(--cell-peer);
+  border-bottom: 1px solid var(--modal-border);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--modal-border);
+  white-space: nowrap;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover {
+  background: var(--cell-peer);
+}
+
+.numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.empty {
+  margin: 0 0 12px 0;
+  padding: 12px;
+  color: var(--fg);
+  opacity: 0.7;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid var(--modal-border);
+  padding-top: 12px;
+}
+
+.closeBtn {
+  background: var(--pad-bg);
+  border: 1px solid var(--pad-border);
+  color: var(--fg);
+  padding: 10px 16px;
+  font-size: calc(14px * var(--font-scale));
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.closeBtn:hover {
+  background: var(--pad-active);
+}
+
+.closeBtn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.dangerBtn {
+  background: transparent;
+  border: 1px solid var(--num-error);
+  color: var(--num-error);
+  padding: 10px 16px;
+  font-size: calc(14px * var(--font-scale));
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.dangerBtn:hover {
+  background: var(--num-error);
+  color: var(--bg);
+}
+
+.dangerBtn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
