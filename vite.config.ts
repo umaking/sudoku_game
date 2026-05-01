@@ -61,7 +61,7 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: ['game.umaking.synology.me'],
+    allowedHosts: ['{your domain}'],
   },
   test: {
     environment: 'jsdom',
