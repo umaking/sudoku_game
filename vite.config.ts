@@ -60,6 +60,9 @@ export default defineConfig({
       '@test': path.resolve(__dirname, 'src/test'),
     },
   },
+  server: {
+    allowedHosts: ['game.umaking.synology.me'],
+  },
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
