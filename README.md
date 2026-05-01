@@ -12,16 +12,16 @@
 
 ## 기술 스택
 
-| 영역 | 사용 기술 |
-|---|---|
-| Frontend | React 18, TypeScript 5.6 (strict + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes`) |
-| 빌드 | Vite 5, vite-plugin-pwa, Workbox |
-| 상태 관리 | Zustand 4 (5 slices: board / history / settings / gameSession / stats) |
-| 렌더링 | SVG 시각 레이어 + 투명 DOM 인터랙션 레이어 하이브리드 |
-| 사운드 | Web Audio API (절차적 톤, 외부 자산 0개) |
-| 단위 테스트 | Vitest 2 + jsdom + @testing-library/react |
-| e2e 테스트 | Playwright (Chromium headless) |
-| 린트 / 포맷 | ESLint 9 (flat config) + typescript-eslint, Prettier |
+| 영역        | 사용 기술                                                                                     |
+| ----------- | --------------------------------------------------------------------------------------------- |
+| Frontend    | React 18, TypeScript 5.6 (strict + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes`) |
+| 빌드        | Vite 5, vite-plugin-pwa, Workbox                                                              |
+| 상태 관리   | Zustand 4 (5 slices: board / history / settings / gameSession / stats)                        |
+| 렌더링      | SVG 시각 레이어 + 투명 DOM 인터랙션 레이어 하이브리드                                         |
+| 사운드      | Web Audio API (절차적 톤, 외부 자산 0개)                                                      |
+| 단위 테스트 | Vitest 2 + jsdom + @testing-library/react                                                     |
+| e2e 테스트  | Playwright (Chromium headless)                                                                |
+| 린트 / 포맷 | ESLint 9 (flat config) + typescript-eslint, Prettier                                          |
 
 외부 사운드 / 아이콘 / 폰트 자산 없음. 빌드 산출물은 약 200KB(JS) + 17KB(CSS) gzipped.
 
@@ -44,6 +44,16 @@ npm run dev
 # → http://localhost:5173
 ```
 
+같은 Wi‑Fi의 다른 기기(휴대폰·태블릿)에서 접속하려면 `--host` 모드로 실행:
+
+```bash
+npm run dev:host
+# → Local:   http://localhost:5173
+# → Network: http://<로컬IP>:5173   (휴대폰 등에서 이 주소로 접속)
+```
+
+> macOS 방화벽이 켜져 있으면 Node 프로세스의 인바운드 연결을 한 번 허용해야 하며, 빌드 결과물을 외부에서 미리보려면 `npm run preview:host` 를 사용합니다.
+
 Playwright e2e를 실행하려면 처음에 한 번 브라우저 설치 필요:
 
 ```bash
@@ -55,20 +65,22 @@ npm run test:e2e
 
 ## 스크립트
 
-| 명령어 | 설명 |
-|---|---|
-| `npm run dev` | 개발 서버 (Vite, HMR) |
-| `npm run build` | 프로덕션 빌드 (`tsc -b && vite build`) |
-| `npm run preview` | 빌드 결과 로컬 프리뷰 (PWA SW 활성) |
-| `npm test` | Vitest 단위 테스트 단발 실행 |
-| `npm run test:watch` | Vitest 워치 모드 |
-| `npm run test:ui` | Vitest UI |
-| `npm run test:e2e` | Playwright e2e (자동으로 dev 서버 띄움) |
-| `npm run test:e2e:install` | Playwright Chromium 설치 |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run format` | Prettier 자동 포맷 |
-| `npm run ci` | typecheck + lint + 단위 테스트 일괄 실행 |
+| 명령어                     | 설명                                     |
+| -------------------------- | ---------------------------------------- |
+| `npm run dev`              | 개발 서버 (Vite, HMR)                    |
+| `npm run dev:host`         | 개발 서버를 `0.0.0.0`에 바인딩 (LAN 접속) |
+| `npm run build`            | 프로덕션 빌드 (`tsc -b && vite build`)   |
+| `npm run preview`          | 빌드 결과 로컬 프리뷰 (PWA SW 활성)      |
+| `npm run preview:host`     | 프리뷰를 `0.0.0.0`에 바인딩 (LAN 접속)   |
+| `npm test`                 | Vitest 단위 테스트 단발 실행             |
+| `npm run test:watch`       | Vitest 워치 모드                         |
+| `npm run test:ui`          | Vitest UI                                |
+| `npm run test:e2e`         | Playwright e2e (자동으로 dev 서버 띄움)  |
+| `npm run test:e2e:install` | Playwright Chromium 설치                 |
+| `npm run lint`             | ESLint                                   |
+| `npm run typecheck`        | `tsc --noEmit`                           |
+| `npm run format`           | Prettier 자동 포맷                       |
+| `npm run ci`               | typecheck + lint + 단위 테스트 일괄 실행 |
 
 ---
 
@@ -141,6 +153,7 @@ public/                            # PWA 아이콘 (SVG)
 ## 주요 기능
 
 ### 게임플레이
+
 - 마우스 / 터치 / 키보드 입력
 - 키보드: 화살표(이동), 1-9(입력), Shift+1-9(메모), Backspace(지우기), Z/Y(undo/redo), M(메모 모드), Esc(선택 해제)
 - 모바일 **롱프레스 500ms** → 메모 모드 토글 + `navigator.vibrate(10)` 햅틱
@@ -148,15 +161,18 @@ public/                            # PWA 아이콘 (SVG)
 - 자동 풀이 완료 감지 → ResultScreen 자동 표시
 
 ### 사운드
+
 - 입력(triangle 660Hz) / 지우기(sine 320Hz) / 메모(sine 880Hz)
 - **한 줄(행·열·박스) 완성 차임** — C5–E5–G5 아르페지오
 - Settings에서 on/off
 
 ### 시각 효과
+
 - 한 줄 완성 시 9셀 동시 fill flash (0.8s, ease-out)
 - `prefers-reduced-motion` 존중
 
 ### 접근성
+
 - 라이트 / 다크 / 시스템 테마 (빠른 토글 + Settings 풀 옵션)
 - **색맹 모드** — parity / error 토큰을 청·주황 축으로 재정의 (적·녹 색약 안전)
 - 글꼴 크기 3단계 (Sm 1× / Md 1.15× / Lg 1.3×)
@@ -164,11 +180,13 @@ public/                            # PWA 아이콘 (SVG)
 - ARIA labels / `aria-pressed` / `aria-modal`
 
 ### 통계 / 학습
+
 - 변형 × 난이도별 PB / 완료 횟수 / 누적 실수 (localStorage 영속)
 - **인터랙티브 튜토리얼** — 변형별 3~4 단계, MiniBoard에서 직접 풀어보기
 - HowToPlay 모달 (룰 마크다운)
 
 ### PWA
+
 - `manifest.webmanifest` 로 설치 가능
 - Workbox 오프라인 캐시
 - SW autoUpdate
